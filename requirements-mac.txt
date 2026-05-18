@@ -1,0 +1,6 @@
+PyQt6
+requests
+yt-dlp
+psutil
+websockets
+pyinstaller

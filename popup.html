@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RapidGet</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 300px;
+    background: #0d1117;
+    color: #e6edf3;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 13px;
+  }
+  .header {
+    background: rgba(0,212,255,0.12);
+    border-bottom: 1px solid rgba(0,212,255,0.3);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo { color: #00d4ff; font-size: 18px; font-weight: bold; letter-spacing: 2px; }
+  .version { color: #8b949e; font-size: 11px; }
+  .body { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  label { color: #8b949e; font-size: 11px; font-weight: bold; letter-spacing: 1px; display: block; margin-bottom: 4px; }
+  input, select {
+    width: 100%;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #e6edf3;
+    font-size: 13px;
+    outline: none;
+  }
+  input:focus, select:focus { border-color: rgba(0,212,255,0.5); }
+  .btn {
+    width: 100%;
+    background: linear-gradient(90deg, rgba(0,212,255,0.9), rgba(0,153,204,0.9));
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    color: #0d1117;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn:hover { opacity: 0.88; }
+  .btn-outline {
+    background: transparent;
+    border: 1px solid rgba(0,212,255,0.4);
+    color: #00d4ff;
+    border-radius: 8px;
+    padding: 8px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.15s;
+  }
+  .btn-outline:hover { background: rgba(0,212,255,0.1); }
+  .status {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #8b949e;
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #555; flex-shrink: 0;
+    transition: background 0.3s;
+  }
+  .dot.connected { background: #00b894; }
+  .dot.error     { background: #e17055; }
+  .divider { border: none; border-top: 1px solid #21262d; }
+  .url-row { display: flex; gap: 6px; }
+  .url-row input { flex: 1; }
+  .send-btn {
+    background: rgba(0,212,255,0.15);
+    border: 1px solid rgba(0,212,255,0.4);
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #00d4ff;
+    cursor: pointer;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .send-btn:hover { background: rgba(0,212,255,0.25); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="logo">⚡ RapidGet</div>
+    <div class="version">Extension v2.0.0</div>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- Connection status -->
+  <div class="status">
+    <div class="dot" id="dot"></div>
+    <span id="status-text">Checking connection…</span>
+  </div>
+
+  <!-- Send current tab -->
+  <button class="btn" id="send-tab">
+    📥 Download Current Tab URL
+  </button>
+
+  <hr class="divider">
+
+  <!-- Manual URL entry -->
+  <div>
+    <label>MANUAL URL</label>
+    <div class="url-row">
+      <input type="text" id="manual-url" placeholder="https://…" />
+      <button class="send-btn" id="send-manual">Send</button>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Port setting -->
+  <div>
+    <label>APP PORT</label>
+    <input type="number" id="port-input" value="49152" min="1024" max="65535" />
+  </div>
+
+  <button class="btn-outline" id="save-port">Save Port</button>
+
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>
